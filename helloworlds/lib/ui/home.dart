@@ -21,21 +21,54 @@ class ScaffoldExample extends StatelessWidget {
           const IconButton(onPressed: _tapbutton, icon: Icon(Icons.alarm))
         ],
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+              icon: Icon(Icons.account_circle), label: 'account'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.add_a_photo), label: 'add photo')
+        ],
+        onTap: (int index) => debugPrint("Tap Item : $index"),
+      ),
       backgroundColor: Colors.amber.shade100,
       body: Container(
         alignment: Alignment.center,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            InkWell(
-              onTap: (() => debugPrint('Tapped....')),
-              child: const Text(
-                'Tap Me!',
-                style: TextStyle(fontSize: 23.4),
-              ),
-            )
+          children: const <Widget>[
+            CustomButtom()
+
+            // InkWell(
+            //   onTap: (() => debugPrint('Tapped....')),
+            //   child: const Text(
+            //     'Tap Me!',
+            //     style: TextStyle(fontSize: 23.4),
+            //   ),
+            // )
           ],
         ),
+      ),
+    );
+  }
+}
+
+// Custom Button
+class CustomButtom extends StatelessWidget {
+  const CustomButtom({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () {
+        const snackBar = SnackBar(
+            content: Text("Hello again"), backgroundColor: Colors.amber);
+        ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      },
+      child: Container(
+        padding: const EdgeInsets.all(10.0),
+        decoration: BoxDecoration(
+            color: Colors.pinkAccent, borderRadius: BorderRadius.circular(8.0)),
+        child: const Text('Button'),
       ),
     );
   }
