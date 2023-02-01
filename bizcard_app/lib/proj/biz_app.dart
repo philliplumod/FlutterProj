@@ -7,13 +7,17 @@ class BizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("BizCard"),
-      ),
+          title: const Text("BizCard"),
+          backgroundColor: const Color.fromARGB(255, 228, 54, 54)),
       body: Container(
         alignment: Alignment.center,
         child: Stack(
-          alignment: Alignment.center,
-          children: <Widget>[_getCard(), _getAvatar()],
+          alignment: Alignment.topCenter,
+          children: <Widget>[
+            _getCard(),
+            //cards
+            _getAvatar()
+          ],
         ),
       ),
     );
@@ -21,16 +25,23 @@ class BizCard extends StatelessWidget {
 
   Container _getCard() {
     return Container(
-      width: 350,
+      width: 300,
       height: 200,
+      margin: const EdgeInsets.all(50),
       decoration: BoxDecoration(
-        color: Colors.amber,
+        color: Colors.red,
         borderRadius: BorderRadius.circular(15),
       ),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          const Text('John Doe'),
+          const Text(
+            'John Doe',
+            style: TextStyle(
+                fontSize: 20.9,
+                color: Colors.white,
+                fontWeight: FontWeight.w500),
+          ),
           const Text('Johndoe@gmail.com'),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
