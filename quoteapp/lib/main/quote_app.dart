@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:quoteapps/main/quote_list.dart';
 
 class QuoteApp extends StatefulWidget {
   const QuoteApp({super.key});
@@ -28,49 +27,47 @@ class _QuoteAppState extends State<QuoteApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Expanded(
-              child: Center(
-                child: Container(
-                    width: 350,
-                    height: 200,
-                    margin: const EdgeInsets.all(30.0),
-                    decoration: BoxDecoration(
-                        color: Colors.amber,
-                        borderRadius: BorderRadius.circular(15)),
-                    child: Center(
-                      child: Text(
-                        quotes[_index % quotes.length],
-                        style: const TextStyle(
-                            fontStyle: FontStyle.italic, fontSize: 13),
-                        textAlign: TextAlign.center,
-                      ),
-                    )),
-              ),
-            ), //loop
-            const Divider(
-              thickness: 2.3,
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+            child: Center(
+              child: Container(
+                  width: 350,
+                  height: 200,
+                  margin: const EdgeInsets.all(30.0),
+                  decoration: BoxDecoration(
+                      color: Colors.amber,
+                      borderRadius: BorderRadius.circular(15)),
+                  child: Center(
+                    child: Text(
+                      quotes[_index % quotes.length],
+                      style: const TextStyle(
+                          fontStyle: FontStyle.italic, fontSize: 13),
+                      textAlign: TextAlign.center,
+                    ),
+                  )),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 18.0),
-              child: TextButton.icon(
-                onPressed: _showQoute,
-                icon: const Icon(Icons.wb_sunny),
-                label: const Text(
-                  'Ipsum!',
-                  style: TextStyle(fontSize: 15),
-                ),
-                style: TextButton.styleFrom(
-                    foregroundColor: Colors.red.shade900,
-                    backgroundColor: Colors.black),
+          ), //loop
+          const Divider(
+            thickness: 2.3,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 18.0),
+            child: TextButton.icon(
+              onPressed: _showQoute,
+              icon: const Icon(Icons.wb_sunny),
+              label: const Text(
+                'Ipsum!',
+                style: TextStyle(fontSize: 15),
               ),
+              style: TextButton.styleFrom(
+                  foregroundColor: Colors.red.shade900,
+                  backgroundColor: Colors.black),
             ),
-            const Spacer(),
-          ],
-        ),
+          ),
+          const Spacer(),
+        ],
       ),
     );
   }

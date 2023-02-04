@@ -8,12 +8,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:quoteapps/main/quote_app.dart';
+import 'package:tip_calculator/main/tipcalculator.dart';
 
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const QuoteApp());
+    await tester.pumpWidget(const BillSplitter());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);
