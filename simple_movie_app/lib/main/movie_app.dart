@@ -259,7 +259,11 @@ class MovieDetailsHeaderWithPoster extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      child: Row(children: [MoviePoster(poster: movie.images[2].toString())]),
+      child: Row(children: [
+        MoviePoster(poster: movie.images[2].toString()),
+        const SizedBox(width: 16),
+        Expanded(child: MovieDetailsHeader(movie: movie))
+      ]),
     );
   }
 }
@@ -282,6 +286,34 @@ class MoviePoster extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class MovieDetailsHeader extends StatelessWidget {
+  final Movie movie;
+  const MovieDetailsHeader({super.key, required this.movie});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("${movie.year} . ${movie.genre}".toUpperCase(),
+            style: const TextStyle(
+                fontWeight: FontWeight.w400, color: Colors.black)),
+        Text(movie.title,
+            style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 30)),
+        Text.rich(TextSpan(
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w300),
+            children: [
+              TextSpan(text: movie.plot),
+              const TextSpan(
+                  text: '  More...',
+                  style: TextStyle(
+                      color: Colors.blue, fontWeight: FontWeight.w500))
+            ]))
+      ],
     );
   }
 }
