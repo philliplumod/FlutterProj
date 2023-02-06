@@ -187,8 +187,11 @@ class MovieListViewDetails extends StatelessWidget {
       ),
       body: ListView(
         children: [
-          MovieDetailsThumbnail(thumbnail: movie.images[0]),
-          MovieDetailsHeaderWithPoster(movie: movie)
+          MovieDetailsThumbnail(thumbnail: movie.images[2]),
+          MovieDetailsHeaderWithPoster(movie: movie),
+          MovieDetailsCast(movie: movie),
+          HorizontalLine(),
+          MovieDetailsExtraPoster(poster: movie.images)
         ],
       ),
       // body: Center(
@@ -260,7 +263,7 @@ class MovieDetailsHeaderWithPoster extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0),
       child: Row(children: [
-        MoviePoster(poster: movie.images[2].toString()),
+        MoviePoster(poster: movie.images[1].toString()),
         const SizedBox(width: 16),
         Expanded(child: MovieDetailsHeader(movie: movie))
       ]),
@@ -313,6 +316,106 @@ class MovieDetailsHeader extends StatelessWidget {
                   style: TextStyle(
                       color: Colors.blue, fontWeight: FontWeight.w500))
             ]))
+      ],
+    );
+  }
+}
+
+class MovieDetailsCast extends StatelessWidget {
+  final Movie movie;
+  const MovieDetailsCast({super.key, required this.movie});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 25.0, vertical: 8),
+      child: Column(
+        children: [
+          MovieField(field: "Cast", value: movie.actors),
+          MovieField(field: "Director", value: movie.director),
+          MovieField(field: "Awards", value: movie.awards),
+        ],
+      ),
+    );
+  }
+}
+
+class MovieField extends StatelessWidget {
+  final String field;
+  final String value;
+  const MovieField({super.key, required this.field, required this.value});
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text("$field :",
+            style: const TextStyle(
+                color: Colors.black38,
+                fontSize: 12,
+                fontWeight: FontWeight.w300)),
+        Expanded(
+          child: Text("$value :",
+              style: const TextStyle(
+                  color: Colors.black,
+                  fontSize: 12,
+                  fontWeight: FontWeight.w300)),
+        )
+      ],
+    );
+  }
+}
+
+class HorizontalLine extends StatelessWidget {
+  const HorizontalLine({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 12.0),
+      child: Container(
+        height: 0.5,
+        color: Colors.black,
+      ),
+    );
+  }
+}
+
+class MovieDetailsExtraPoster extends StatelessWidget {
+  final List<String> poster;
+  const MovieDetailsExtraPoster({super.key, required this.poster});
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          'More Movie Posters'.toUpperCase(),
+          style: const TextStyle(fontSize: 14),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 10.0),
+          child: SizedBox(
+            height: 200,
+            child: ListView.separated(
+                scrollDirection: Axis.horizontal,
+                itemBuilder: ((context, index) => ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(10)),
+                    child: Container(
+                        width: MediaQuery.of(context).size.width / 4,
+                        height: 170,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image: NetworkImage(poster[index]),
+                              fit: BoxFit.cover),
+                        )))),
+                separatorBuilder: ((context, index) =>
+                    const SizedBox(width: 10)),
+                itemCount: poster.length),
+          ),
+        )
       ],
     );
   }
