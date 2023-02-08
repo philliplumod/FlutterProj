@@ -49,7 +49,6 @@ class MovieListView extends StatelessWidget {
               Positioned(
                   top: 5.0, child: movieImage(movieList[index].images[1])),
             ]);
-
             //WIDGET CARD FOR MOVIE
             // return Card(
             //   elevation: 4.5,
@@ -90,7 +89,7 @@ class MovieListView extends StatelessWidget {
   Widget movieCard(Movie movie, BuildContext context) {
     return InkWell(
       child: Container(
-        margin: EdgeInsets.only(left: 60.0),
+        margin: const EdgeInsets.only(left: 60.0),
         width: MediaQuery.of(context).size.width,
         height: 100.0,
         child: Card(
@@ -190,7 +189,7 @@ class MovieListViewDetails extends StatelessWidget {
           MovieDetailsThumbnail(thumbnail: movie.images[2]),
           MovieDetailsHeaderWithPoster(movie: movie),
           MovieDetailsCast(movie: movie),
-          HorizontalLine(),
+          const HorizontalLine(),
           MovieDetailsExtraPoster(poster: movie.images)
         ],
       ),
@@ -279,7 +278,7 @@ class MoviePoster extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: ClipRRect(
-        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderRadius: const BorderRadius.all(Radius.circular(10.0)),
         child: Container(
           width: MediaQuery.of(context).size.width / 4,
           height: 160,
