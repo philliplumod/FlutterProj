@@ -27,10 +27,10 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: (AppBar(
-        title: Text('Lorem Demo'),
+        title: const Text('Lorem Demo'),
       )),
       body: (Column(
-        children: [LoremIpsim(), CheckboxDemo()],
+        children: const [LoremIpsim(), CheckboxDemo()],
       )),
     );
   }
@@ -42,7 +42,7 @@ class LoremIpsim extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: (Text(
+      child: (const Text(
           'Lorem ipsum dolor sit amet consectetur. Eu platea nec diam ac a.')),
     );
   }
@@ -54,7 +54,7 @@ class CheckboxDemo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-      children: [
+      children: const [
         CheckboxItem(
           label: 'Lorem',
         ),
@@ -76,7 +76,7 @@ class CheckboxItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      children: [Checkbox(value: false, onChanged: null), Text(label)],
+      children: [const Checkbox(value: false, onChanged: null), Text(label)],
     );
   }
 }
